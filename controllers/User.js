@@ -1,7 +1,6 @@
 const User = require("../models/UserModels");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { default: mongoose } = require("mongoose");
 
 //Register User Controller
 exports.registrationsControllers = async (req, res) => {
@@ -67,7 +66,7 @@ exports.loginController = async (req, res) => {
     if (await bcrypt.compare(password, user.password)) {
       const token = jwt.sign(
         { user_name: user.user_name, id: user._id },
-        process.env.JWT_SECRET,
+        "shreeprakash",
         {
           expiresIn: "24h",
         }
